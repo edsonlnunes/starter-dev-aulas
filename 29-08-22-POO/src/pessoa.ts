@@ -1,27 +1,33 @@
 export class Pessoa {
   // caracteristicas (atributos)
-  nome!: string;
-  idade!: number;
-  altura!: number;
-  peso!: number;
-  cpf!: string;
+
+  // ? = diz para o TS que o atributo é opcional
+  // ! = diz para o TS que o atributo não é opcional e que nao vai ser inicializado (no construtor)
+  nome: string;
+  idade: number;
+  altura: number;
+  peso: number;
+  cpf?: string;
 
   // construtor (como a classe deve ser construida)
 
   constructor(
-    nomeInicial: string,
+    nome: string,
     idadeInicial: number,
     alturaInicial: number,
     pesoInicial: number
   ) {
-    this.nome = nomeInicial;
+    this.nome = nome;
     this.idade = idadeInicial;
     this.altura = alturaInicial;
     this.peso = pesoInicial;
-    this.cpf = "NÃO REGISTRADO";
   }
 
   // comportamentos (métodos)
+
+  registrar(cpf: string) {
+    this.cpf = cpf;
+  }
 
   caminhar(distancia: number): void {
     // lógica (codigo)
