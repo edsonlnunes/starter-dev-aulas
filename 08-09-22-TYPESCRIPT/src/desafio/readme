@@ -1,0 +1,8 @@
+1. Crie uma classe Aluno com os atributos Nome, Idade, Nota e Status. 
+2. Crie uma lista com pelo menos 7 alunos. 
+3. Depois crie uma lista de 10 elementos que sirva de gabarito de uma prova.
+4. Percorra a lista de alunos e aleatoriamente sorteie as respostas para os alunos (simulando como se o aluno estivesse marcando a resposta da pergunta).
+5. Contabilize a nota do aluno comparando a resposta que foi sorteada com o gabarito da prova. 
+6. Cada acerto vale 1 ponto
+7. Atualize o status do aluno para aprovado caso o aluno tenha uma nota maior ou igual a 6 e reprovado caso a nota for menor que 6.
+8. No final mostre os alunos aprovados, reprovados, média das notas, o melhor aluno (aluno com nota mais alta) e o pior aluno (aluno com a nota mais baixa). A saída precisa ser parecido com essa:
