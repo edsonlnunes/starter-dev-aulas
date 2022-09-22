@@ -3,10 +3,20 @@ import { growdeversDB } from "../db/growdevers";
 
 export class GetAllGrowdeversController {
   getAll(request: Request, response: Response) {
-    const data = growdeversDB.map((grow) => {
+    const { name } = request.query;
+
+    let growdevers = growdeversDB.map((grow) => {
       return grow.toJson();
     });
 
-    return response.json(data);
+    if (name) {
+      growdevers = growdevers.filter((growdever) => {
+        return growdever.name
+          .toLowerCase()
+          .includes(name.toString().toLowerCase());
+      });
+    }
+
+    return response.json(growdevers);
   }
 }
