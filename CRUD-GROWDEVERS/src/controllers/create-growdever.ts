@@ -10,13 +10,6 @@ export class CreateGrowdeverController {
 
     growdeversDB.push(growdever);
 
-    return response.json({
-      id: growdever.id,
-      name: growdever.name,
-      birth: growdever.birth,
-      cpf: growdever.cpf,
-      status: growdever.status,
-      skills: growdever.skills,
-    });
+    return response.json(growdever.toJson());
   }
 }

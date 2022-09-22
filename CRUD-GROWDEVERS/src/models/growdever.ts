@@ -57,4 +57,23 @@ export class Growdever {
     //   this._skills = [];
     // }
   }
+
+  // comportamentos
+
+  updateInforation(name: string, birth: Date, status: string) {
+    this._name = name;
+    this._birth = birth;
+    this._status = status;
+  }
+
+  toJson() {
+    return {
+      id: this._id,
+      name: this._name,
+      birth: this._birth,
+      cpf: this._cpf,
+      status: this._status,
+      skills: this._skills,
+    };
+  }
 }
