@@ -58,9 +58,32 @@ export class Growdever {
     // }
   }
 
-  // comportamentos
+  // comportamentos (métodos)
 
-  updateInforation(name: string, birth: Date, status: string) {
+  updateInformation(name: string, birth: Date, status: string) {
+    if (!name) throw new Error("Nome inválido");
+
+    if (!birth || isNaN(birth.getDate()))
+      throw new Error("Data de nascimento inválido");
+
+    // 'STUDYING', 'GRADUATED', 'CANCELED'
+
+    // if (
+    //   status !== "STUDYING" &&
+    //   status !== "GRADUATED" &&
+    //   status !== "CANCELED"
+    // ) {
+    //   throw new Error(
+    //     "Status inválido. Valores permitidos: STUDYING, GRADUATED ou CANCELED"
+    //   );
+    // }
+
+    if (!["STUDYING", "GRADUATED", "CANCELED"].some((s) => s === status)) {
+      throw new Error(
+        "Status inválido. Valores permitidos: STUDYING, GRADUATED ou CANCELED"
+      );
+    }
+
     this._name = name;
     this._birth = birth;
     this._status = status;
