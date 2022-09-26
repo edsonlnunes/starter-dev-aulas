@@ -3,17 +3,29 @@ import { growdeversDB } from "../db/growdevers";
 
 export class GetAllGrowdeversController {
   getAll(request: Request, response: Response) {
-    const { name } = request.query;
+    const { name, status } = request.query;
 
     let growdevers = growdeversDB.map((grow) => {
       return grow.toJson();
     });
 
-    if (name) {
+    if (name || status) {
       growdevers = growdevers.filter((growdever) => {
-        return growdever.name
-          .toLowerCase()
-          .includes(name.toString().toLowerCase());
+        let filterName = true;
+        let filterStatus = true;
+
+        if (name) {
+          filterName = growdever.name
+            .toLowerCase()
+            .includes(name.toString().toLowerCase());
+        }
+
+        if (status) {
+          filterStatus =
+            growdever.status.toUpperCase() === status.toString().toUpperCase();
+        }
+
+        return filterName && filterStatus;
       });
     }
 
