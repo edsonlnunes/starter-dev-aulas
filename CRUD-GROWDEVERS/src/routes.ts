@@ -1,4 +1,5 @@
 import { Express } from "express";
+import { AddGrowdeverSkillsController } from "./controllers/add-growdever-skills";
 import { CreateGrowdeverController } from "./controllers/create-growdever";
 import { GetAllGrowdeversController } from "./controllers/get-all-growdevers";
 import { GetGrowdeverByIdController } from "./controllers/get-growdever-by-id";
@@ -13,6 +14,10 @@ export default (app: Express) => {
   app.get("/growdevers/:id", new GetGrowdeverByIdController().getById);
   app.delete("/growdevers/:id", new RemoveGrowdeverController().remove);
   app.put("/growdevers/:id", new UpdateGrowdeverController().update);
+  app.put(
+    "/growdevers/:id/skills",
+    new AddGrowdeverSkillsController().addSkills
+  );
 };
 
 // M = MODELS

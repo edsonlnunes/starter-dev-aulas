@@ -36,7 +36,7 @@ export class Growdever {
   private _skills: string[];
 
   get skills(): string[] {
-    return this._skills;
+    return [...this._skills];
   }
 
   constructor(name: string, birth: string, cpf: string, skills?: string[]) {
@@ -87,6 +87,14 @@ export class Growdever {
     this._name = name;
     this._birth = birth;
     this._status = status;
+  }
+
+  updateSkills(newSkills: string[]) {
+    if (!newSkills || newSkills.length === 0) {
+      throw new Error("Não é possivel adicionar uma lista vazia.");
+    }
+
+    this._skills.push(...newSkills);
   }
 
   toJson() {
