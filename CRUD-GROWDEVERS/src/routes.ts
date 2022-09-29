@@ -1,6 +1,7 @@
 import { Express } from "express";
 import { AddGrowdeverSkillsController } from "./controllers/add-growdever-skills";
 import { CreateGrowdeverController } from "./controllers/create-growdever";
+import { DeleteSkillController } from "./controllers/delete-skills";
 import { GetAllGrowdeversController } from "./controllers/get-all-growdevers";
 import { GetGrowdeverByIdController } from "./controllers/get-growdever-by-id";
 import { RemoveGrowdeverController } from "./controllers/remove-growdever";
@@ -27,6 +28,7 @@ export default (app: Express) => {
     "/growdevers/:id/skills",
     new AddGrowdeverSkillsController().addSkills
   );
+  app.delete("/growdevers/:id/skills", new DeleteSkillController().deleteSkill);
 };
 
 // M = MODELS

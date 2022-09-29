@@ -108,4 +108,23 @@ export class Growdever {
       skills: this._skills,
     };
   }
+
+  deleteSkill(skill: string) {
+    // "" -> false
+    // undefined -> false
+    // null -> false
+    if (!skill) {
+      throw new Error("Skill informada está inválida");
+    }
+
+    const indexSkill = this._skills.findIndex(
+      (s) => s.toLowerCase() === skill.toLowerCase()
+    );
+
+    if (indexSkill < 0) {
+      throw new Error("Skill não encontrada");
+    }
+
+    this._skills.splice(indexSkill, 1);
+  }
 }
