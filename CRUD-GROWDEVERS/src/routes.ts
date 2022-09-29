@@ -5,7 +5,9 @@ import { GetAllGrowdeversController } from "./controllers/get-all-growdevers";
 import { GetGrowdeverByIdController } from "./controllers/get-growdever-by-id";
 import { RemoveGrowdeverController } from "./controllers/remove-growdever";
 import { UpdateGrowdeverController } from "./controllers/update-growdever";
+import { ClearFormattingMiddleware } from "./middlewares/clear-formatting";
 import { ValidateCpfMiddleware } from "./middlewares/validate-cpf";
+import { VerifyCpfExistsMiddleware } from "./middlewares/verify-cpf-exists";
 
 export default (app: Express) => {
   app.get("/", (request, response) => response.send("ESTÁ FUNCIONANDO"));
@@ -13,7 +15,9 @@ export default (app: Express) => {
   app.get("/growdevers", new GetAllGrowdeversController().getAll);
   app.post(
     "/growdevers",
+    // new ClearFormattingMiddleware().clearFomatting,
     new ValidateCpfMiddleware().validateCpf,
+    new VerifyCpfExistsMiddleware().verifyCpfExists,
     new CreateGrowdeverController().create
   );
   app.get("/growdevers/:id", new GetGrowdeverByIdController().getById);

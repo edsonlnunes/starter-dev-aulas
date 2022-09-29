@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import "../utils/extension-methods";
 
 export class Growdever {
   // caracteristicas (atributos)
@@ -43,7 +44,7 @@ export class Growdever {
     this._id = crypto.randomUUID();
     this._name = name;
     this._birth = new Date(birth);
-    this._cpf = cpf;
+    this._cpf = cpf.clearSpecialCharacteres();
     this._status = "STUDYING";
     this._skills = skills ?? [];
 
