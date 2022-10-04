@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Growdever } from "../models/growdever";
-import { growdeversDB } from "../db/growdevers";
+import { saveGrowdeversSync, getGrowdeversSync } from "../db/growdevers";
 
 export class CreateGrowdeverController {
   create(request: Request, response: Response) {
@@ -8,7 +8,11 @@ export class CreateGrowdeverController {
 
     const growdever = new Growdever(name, birth, cpf, skills);
 
-    growdeversDB.push(growdever);
+    const growdevers = getGrowdeversSync();
+
+    growdevers.push(growdever);
+
+    saveGrowdeversSync(growdevers);
 
     return response.json(growdever.toJson());
   }

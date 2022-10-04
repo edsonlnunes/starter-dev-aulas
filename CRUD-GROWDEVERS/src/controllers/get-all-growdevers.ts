@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { growdeversDB } from "../db/growdevers";
+import { getGrowdeversSync } from "../db/growdevers";
 
 export class GetAllGrowdeversController {
   getAll(request: Request, response: Response) {
     const { name, status } = request.query;
 
-    let growdevers = growdeversDB.map((grow) => {
+    let growdevers = getGrowdeversSync().map((grow) => {
       return grow.toJson();
     });
 

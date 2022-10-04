@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
-import { growdeversDB } from "../db/growdevers";
+import { getGrowdeversSync, saveGrowdeversSync } from "../db/growdevers";
 
 export class AddGrowdeverSkillsController {
   addSkills(request: Request, response: Response) {
     const { id } = request.params;
     const { skills } = request.body;
+
+    const growdeversDB = getGrowdeversSync();
 
     const growdever = growdeversDB.find((grow) => grow.id === id);
 
@@ -14,6 +16,7 @@ export class AddGrowdeverSkillsController {
 
     try {
       growdever.updateSkills(skills);
+      saveGrowdeversSync(growdeversDB);
     } catch (error: any) {
       return response.status(400).json({ error: error.message });
     }

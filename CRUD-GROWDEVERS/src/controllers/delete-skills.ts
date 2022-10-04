@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
-import { growdeversDB } from "../db/growdevers";
+import { getGrowdeversSync, saveGrowdeversSync } from "../db/growdevers";
 
 export class DeleteSkillController {
   deleteSkill(request: Request, response: Response) {
     const { id } = request.params;
     const { skill } = request.body;
+
+    const growdeversDB = getGrowdeversSync();
 
     const growdever = growdeversDB.find((growdever) => growdever.id === id);
 
@@ -14,6 +16,7 @@ export class DeleteSkillController {
 
     try {
       growdever.deleteSkill(skill);
+      saveGrowdeversSync(growdeversDB);
     } catch (err: any) {
       return response.status(400).json({ error: err.message });
     }

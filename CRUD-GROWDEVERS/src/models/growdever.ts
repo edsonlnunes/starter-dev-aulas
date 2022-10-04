@@ -59,6 +59,22 @@ export class Growdever {
     // }
   }
 
+  // static nomeMentor: string = "Edson vindo do static";
+
+  static create(
+    id: string,
+    name: string,
+    cpf: string,
+    birth: string,
+    status: string,
+    skills: string[]
+  ): Growdever {
+    const growdever = new Growdever(name, birth, cpf, skills);
+    growdever._id = id;
+    growdever._status = status;
+    return growdever;
+  }
+
   // comportamentos (métodos)
 
   updateInformation(name: string, birth: Date, status: string) {
