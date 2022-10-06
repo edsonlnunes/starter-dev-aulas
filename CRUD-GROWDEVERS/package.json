@@ -5,17 +5,19 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "dev:only": "ts-node-dev --transpile-only src/db/growdevers.ts",
+    "dev:richard": "ts-node-dev --transpile-only src/db/growdevers.ts",
     "dev:debug": "ts-node-dev --inspect --respawn --transpile-only src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "cpf-cnpj-validator": "^1.0.3",
     "express": "^4.18.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.14",
     "@types/node": "^18.7.18",
     "ts-node-dev": "^2.0.0",

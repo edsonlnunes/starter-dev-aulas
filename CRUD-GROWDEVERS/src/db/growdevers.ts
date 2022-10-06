@@ -1,17 +1,19 @@
 import { Growdever } from "../models/growdever";
 import fs from "fs";
 
+const filePath = `${__dirname}/db.json`;
+
 // export const growdeversDB: Growdever[] = [];
 
 // ===== assincrono e callback =====
 export const getGrowdevers = async (): Promise<Growdever[]> => {
   // se arquivo não existir, retorna uma lista vazia
-  if (!fs.existsSync("db.json")) {
+  if (!fs.existsSync(filePath)) {
     return [];
   }
 
   return new Promise<Growdever[]>((resolve, reject) => {
-    fs.readFile("db.json", (error, data) => {
+    fs.readFile(filePath, (error, data) => {
       if (error) {
         return reject(new Error("Erro ao ler o arquivo"));
       }
@@ -40,7 +42,7 @@ export const saveGrowdevers = (growdevers: Growdever[]): Promise<boolean> => {
   );
 
   return new Promise<boolean>((resolve, reject) => {
-    fs.writeFile("db.json", dataInJSON, (error) => {
+    fs.writeFile(filePath, dataInJSON, (error) => {
       if (error) return reject(new Error("Erro ao salvar no arquivo"));
 
       return resolve(true);
@@ -51,11 +53,11 @@ export const saveGrowdevers = (growdevers: Growdever[]): Promise<boolean> => {
 // ===== sincrona =====
 export const getGrowdeversSync = (): Growdever[] => {
   // se arquivo não existir, retorna uma lista vazia
-  if (!fs.existsSync("db.json")) {
+  if (!fs.existsSync(filePath)) {
     return [];
   }
 
-  const data = fs.readFileSync("db.json");
+  const data = fs.readFileSync(filePath);
 
   const growdeversJSON = JSON.parse(data.toString()) as any[];
 
@@ -76,5 +78,5 @@ export const saveGrowdeversSync = (growdevers: Growdever[]): void => {
     growdevers.map((growdever) => growdever.toJson())
   );
 
-  fs.writeFileSync("db.json", dataInJSON);
+  fs.writeFileSync(filePath, dataInJSON);
 };
